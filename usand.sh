@@ -20,6 +20,10 @@ mount -t tmpfs none /tmp/dev
 mkdir /tmp/dev/net
 mkdir /tmp/dev/pts
 ln -s pts/ptmx /tmp/dev/ptmx
+ln -s /proc/self/fd /tmp/dev/fd
+ln -s fd/0 /tmp/dev/stdin
+ln -s fd/1 /tmp/dev/stdout
+ln -s fd/2 /tmp/dev/stderr
 for i in null zero full net/tun tty random urandom ; do
 touch /tmp/dev/"$i"
 mount -o bind "/dev/$i" "/tmp/dev/$i"
