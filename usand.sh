@@ -13,6 +13,7 @@ mkrw .
 
 mount -t tmpfs none /tmp
 mount -t tmpfs none /var/tmp
+mount -t tmpfs none /var/run
 chmod 1777 /tmp /var/tmp
 
 mkdir /tmp/dev
