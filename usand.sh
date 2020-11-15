@@ -3,7 +3,7 @@
 unshare -fpmnc --mount-proc --keep-caps sh -c '
 
 while read a b c ; do case "$b" in
-/proc|/proc/*) ;;
+/proc|/proc/*|/dev|/dev/*|/sys/*) ;;
 *) mount -o bind,remount,ro "$b" ;;
 esac ; done < /proc/mounts
 
