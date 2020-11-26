@@ -17,7 +17,7 @@ mount -t tmpfs none /var/run
 chmod 1777 /tmp /var/tmp
 
 mkdir /tmp/dev
-mount -t tmpfs none /tmp/dev
+mount -t tmpfs -o mode=0755 none /tmp/dev
 mkdir /tmp/dev/net
 mkdir /tmp/dev/pts
 ln -s pts/ptmx /tmp/dev/ptmx
@@ -25,12 +25,9 @@ ln -s /proc/self/fd /tmp/dev/fd
 ln -s fd/0 /tmp/dev/stdin
 ln -s fd/1 /tmp/dev/stdout
 ln -s fd/2 /tmp/dev/stderr
-mkdir /tmp/dev/binds
-mkdir /tmp/dev/binds/net
 for i in null zero full net/tun tty random urandom ; do
-touch /tmp/dev/binds/"$i"
-mount -o bind "/dev/$i" "/tmp/dev/binds/$i"
-ln -s /dev/binds/"$i" /tmp/dev/"$i"
+touch /tmp/dev/"$i"
+mount -o bind "/dev/$i" "/tmp/dev/$i"
 done
 mount -o move /tmp/dev /dev
 
