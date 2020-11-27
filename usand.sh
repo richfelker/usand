@@ -30,6 +30,7 @@ touch /tmp/dev/"$i"
 mount -o bind "/dev/$i" "/tmp/dev/$i"
 done
 mount -o move /tmp/dev /dev
+rmdir /tmp/dev
 
 mount -t devpts none /dev/pts
 chmod 666 /dev/pts/ptmx
